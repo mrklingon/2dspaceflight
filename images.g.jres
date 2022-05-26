@@ -24,6 +24,41 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "background3"
     },
+    "image6": {
+        "data": "hwQgAAUAAAAACAAAAFgAAABYAAAACAUAAAgFAAAIBQAACAUAAFgAAABYAAAAWAAAAFgAAAAFAAAABQAAAAUAAFAIAABQCAAAUAgAAAAFAAAABQAAAFgAAABYAAAAWAAAAFgAAAAFAAAABQAAAAUAAFAIAABQCAAAAAgAAAAIAAAAWAAAAFgAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "phaser"
+    },
+    "image7": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAPD/DwAAAAAA/6//DwD/AACvqqr/8P8PAK+qqvrwqg/wqqqq+v+qD/Cqqq+qqqoP8Kr/r6qq+g/w+q+qqqr6APCqqqqqqv8A8Kqq/6/6DwDw//oP/w8AAADwDwAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid1"
+    },
+    "image9": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAPD//wAAAADw/yLyDwAAAP8iIvIPAAAALyLy/wAAAPAiIvIAAAAA8CIi8v8AAADwLyIi8g8AAAAvIiIiDwAA8C/yLyL/AADwIvIiIvIAAC8i/yIi/wAA/yIvIiL/AADwIiIi/w8AAPD///8AAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid2"
+    },
+    "image8": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAA//8PAAAAAPDPzP8PAAAA8M/MzP8AAAAA/8/M/AAAAAAAz8zMDwAAAP/PzMwPAADwz8zM/A8AAPDMzMz8AAAA/8z8z/wPAADPzMzPzA8AAP/MzP/M/AAA/8zM/Mz/AADw/8zMzA8AAAAA////DwAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid0"
+    },
+    "image10": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPD/DwAA/wDw//7/APD/D//u7v4A8O4P7+7u/gDw7v/v7u7uD/Du7u7+7u4P8O/u7v7/7g8A7+7u7v7vDwD/7u7u7u4PAPDv/v/u7g8AAPD/8O//DwAAAAAA8A8AAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid3"
+    },
+    "image12": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAQAAAAAAABEBAAAAAAAAERIAAAAAAAAREQAAAAAAABERAAAAAAAAEBEAAAAAAAAAEAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "shuttle2"
+    },
+    "image11": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAEAAAAAAAABARAAAAAAAAEREAAAAAAAAREQAAAAAAABEXAAAAAAAAEQEAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "shuttle1"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
