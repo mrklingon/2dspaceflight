@@ -5,6 +5,15 @@ namespace SpriteKind {
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     setScroll(2)
 })
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    droid += 1
+    if (droid > 1) {
+        Enterprise.sayText("M5 Disabled", 500, true)
+        droid = 0
+    } else {
+        Enterprise.sayText("M5 Engaged", 500, true)
+    }
+})
 function setScroll (dir: number) {
     if (dir == 1) {
         scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections, scroller.BackgroundLayer.Layer0)
@@ -73,6 +82,11 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     setScroll(3)
     pdir = 1
 })
+function guideBlast () {
+    blast = sprites.createProjectileFromSprite(assets.image`phaser`, Enterprise, pdir * 200, 0)
+    music.pewPew.play()
+    blast.setFlag(SpriteFlag.AutoDestroy, true)
+}
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     setScroll(4)
 })
@@ -86,6 +100,7 @@ sprites.onOverlap(SpriteKind.rck, SpriteKind.Player, function (sprite, otherSpri
 let shtl: Sprite = null
 let ast: Sprite = null
 let blast: Sprite = null
+let droid = 0
 let pdir = 0
 let Enterprise: Sprite = null
 info.setLife(10)
@@ -103,6 +118,7 @@ pdir = 1
 scroller.setLayerImage(scroller.BackgroundLayer.Layer0, assets.image`background1`)
 scroller.setLayerImage(scroller.BackgroundLayer.Layer1, assets.image`background2`)
 scroller.setLayerImage(scroller.BackgroundLayer.Layer2, assets.image`background3`)
+droid = 0
 forever(function () {
     pause(250 * randint(3, 8))
     ast = sprites.create(rocks[randint(0, 3)], SpriteKind.rck)
@@ -116,11 +132,25 @@ forever(function () {
         shtl = sprites.create(assets.image`shuttle1`, SpriteKind.sht)
         shtl.setVelocity(randint(50, 100), 0)
         shtl.setPosition(0, randint(10, 99))
+        if (droid == 1) {
+            shtl.follow(Enterprise, 300)
+        }
         shtl.setFlag(SpriteFlag.DestroyOnWall, true)
     } else {
         shtl = sprites.create(assets.image`shuttle1`, SpriteKind.sht)
         shtl.setVelocity(randint(-50, -100), 0)
         shtl.setPosition(160, randint(10, 99))
+        if (droid == 1) {
+            shtl.follow(Enterprise, 300)
+        }
         shtl.setFlag(SpriteFlag.DestroyOnWall, true)
+    }
+})
+forever(function () {
+    if (droid == 1) {
+        guideBlast()
+        Enterprise.x += randint(-30, 30)
+        Enterprise.y += randint(-30, 30)
+        pause(250 * randint(3, 6))
     }
 })
