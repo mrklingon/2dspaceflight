@@ -141,7 +141,7 @@ forever(function () {
         shtl.setVelocity(randint(-50, -100), 0)
         shtl.setPosition(160, randint(10, 99))
         if (droid == 1) {
-            shtl.follow(Enterprise, 300)
+            shtl.follow(Enterprise, 25)
         }
         shtl.setFlag(SpriteFlag.DestroyOnWall, true)
     }
