@@ -2,6 +2,11 @@ namespace SpriteKind {
     export const rck = SpriteKind.create()
     export const sht = SpriteKind.create()
 }
+function right () {
+    Enterprise.setImage(assets.image`ship1`)
+    setScroll(3)
+    pdir = 1
+}
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     setScroll(2)
 })
@@ -62,10 +67,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     music.pewPew.play()
     blast.setFlag(SpriteFlag.AutoDestroy, true)
 })
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+function left () {
     Enterprise.setImage(assets.image`ship0`)
     setScroll(1)
     pdir = -1
+}
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    left()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.rck, function (sprite, otherSprite) {
     info.changeScoreBy(randint(10, 20))
@@ -78,9 +86,7 @@ sprites.onOverlap(SpriteKind.rck, SpriteKind.sht, function (sprite, otherSprite)
     info.changeScoreBy(-10)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    Enterprise.setImage(assets.image`ship1`)
-    setScroll(3)
-    pdir = 1
+    right()
 })
 function guideBlast () {
     blast = sprites.createProjectileFromSprite(assets.image`phaser`, Enterprise, pdir * 200, 0)
@@ -97,6 +103,7 @@ sprites.onOverlap(SpriteKind.rck, SpriteKind.Player, function (sprite, otherSpri
     info.changeLifeBy(-1)
     info.changeScoreBy(1)
 })
+let move = 0
 let shtl: Sprite = null
 let ast: Sprite = null
 let blast: Sprite = null
@@ -148,6 +155,16 @@ forever(function () {
 })
 forever(function () {
     if (droid == 1) {
+        move = randint(1, 4)
+        if (move == 1) {
+            left()
+        } else if (move == 2) {
+            pdir = 2
+        } else if (move == 3) {
+            right()
+        } else {
+            pdir = 4
+        }
         guideBlast()
         Enterprise.x += randint(-30, 30)
         Enterprise.y += randint(-30, 30)
