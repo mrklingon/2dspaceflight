@@ -1,6 +1,7 @@
 namespace SpriteKind {
     export const rck = SpriteKind.create()
     export const sht = SpriteKind.create()
+    export const sttn = SpriteKind.create()
 }
 function right () {
     Enterprise.setImage(assets.image`ship1`)
@@ -64,7 +65,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.sht, function (sprite, otherSpri
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     blast = sprites.createProjectileFromSprite(assets.image`phaser`, Enterprise, pdir * 200, 0)
+    light.setAll(0x00ff00)
     music.pewPew.play()
+    light.setAll(0x000000)
     blast.setFlag(SpriteFlag.AutoDestroy, true)
 })
 function left () {
@@ -83,6 +86,9 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.rck, function (sprite, other
 })
 sprites.onOverlap(SpriteKind.rck, SpriteKind.sht, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
+    light.setAll(0xff0000)
+    pause(100)
+    light.setAll(0x000000)
     info.changeScoreBy(-10)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -90,22 +96,30 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function guideBlast () {
     blast = sprites.createProjectileFromSprite(assets.image`phaser`, Enterprise, pdir * 200, 0)
+    light.setAll(0x00ff00)
     music.pewPew.play()
+    light.setAll(0x000000)
     blast.setFlag(SpriteFlag.AutoDestroy, true)
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     setScroll(4)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.sttn, function (sprite, otherSprite) {
+    info.setLife(10)
+})
 sprites.onOverlap(SpriteKind.rck, SpriteKind.Player, function (sprite, otherSprite) {
     sprite.destroy(effects.fire, 500)
+    light.setAll(0xff0000)
     scene.cameraShake(4, 200)
+    light.setAll(0x000000)
     music.knock.play()
     info.changeLifeBy(-1)
     info.changeScoreBy(1)
 })
+let DeepSpace: Sprite = null
 let move = 0
-let shtl: Sprite = null
 let ast: Sprite = null
+let shtl: Sprite = null
 let blast: Sprite = null
 let droid = 0
 let pdir = 0
@@ -126,13 +140,7 @@ scroller.setLayerImage(scroller.BackgroundLayer.Layer0, assets.image`background1
 scroller.setLayerImage(scroller.BackgroundLayer.Layer1, assets.image`background2`)
 scroller.setLayerImage(scroller.BackgroundLayer.Layer2, assets.image`background3`)
 droid = 0
-forever(function () {
-    pause(250 * randint(3, 8))
-    ast = sprites.create(rocks[randint(0, 3)], SpriteKind.rck)
-    ast.setPosition(randint(0, 100), randint(0, 100))
-    ast.setVelocity(randint(-50, 50), randint(-50, 50))
-    ast.setFlag(SpriteFlag.AutoDestroy, true)
-})
+let station = false
 forever(function () {
     pause(randint(2, 6) * 500)
     if (4 <= randint(0, 10)) {
@@ -154,6 +162,13 @@ forever(function () {
     }
 })
 forever(function () {
+    pause(250 * randint(3, 8))
+    ast = sprites.create(rocks[randint(0, 3)], SpriteKind.rck)
+    ast.setPosition(randint(0, 100), randint(0, 100))
+    ast.setVelocity(randint(-50, 50), randint(-50, 50))
+    ast.setFlag(SpriteFlag.AutoDestroy, true)
+})
+forever(function () {
     if (droid == 1) {
         move = randint(1, 4)
         if (move == 1) {
@@ -170,4 +185,19 @@ forever(function () {
         Enterprise.y += randint(-30, 30)
         pause(250 * randint(3, 6))
     }
+})
+forever(function () {
+    if (station) {
+        station = false
+        DeepSpace = sprites.create(assets.image`ds9`, SpriteKind.sttn)
+        DeepSpace.setFlag(SpriteFlag.DestroyOnWall, true)
+        DeepSpace.setVelocity(-29, 0)
+        DeepSpace.setPosition(155, randint(30, 90))
+        station = false
+    }
+})
+forever(function () {
+    pause(500 * randint(3, 8))
+    station = true
+    pause(1000)
 })
